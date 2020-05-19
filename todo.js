@@ -82,6 +82,7 @@ function loadTODos() {
     delAllBtn.innerText = "DELETE ALL!";
     delAllBtn.addEventListener("click", deleteAllToDo);
     toDoList.after(delAllBtn);
+    delAllBtn.style.display = "none";
 
     if (loadedToDos !== null) {
         // console.log(loadedToDos);
