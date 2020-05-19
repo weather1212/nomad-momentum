@@ -1,6 +1,8 @@
 const toDoForm = document.getElementsByClassName("js-toDoForm")[0];
 const toDoInput = toDoForm.getElementsByTagName("input")[0];
 const toDoList = document.getElementsByClassName("js-toDoList")[0];
+const delAllBtn = document.createElement("button");
+// delAllBtn.style.display = "none";
 
 const TODOS_LS = "toDos";
 
@@ -15,15 +17,11 @@ function deleteAllToDo(event) {
     console.log(li);
 
     while (toDoList.hasChildNodes()) {
-        toDoList.removeChild(li);
+        toDoList.removeChild(toDoList.firstChild);
     }
-    // toDoList.removeChild(li);
-
-    toDos = null;
-
-    // toDos = cleanToDos;
-    // localStorage.removeItem("toDos")
-    // console.log("deleteAllToDo");
+    toDos = [];
+    saveToDos();
+    console.log("deleteAllToDo");
 }
 
 function deleteToDo(event) {
@@ -67,7 +65,6 @@ function paintToDo(text) {
     };
     toDos.push(toDoObj);
     saveToDos();
-
 }
 
 function handleSubmit(event) {
@@ -75,16 +72,18 @@ function handleSubmit(event) {
     const currentValue = toDoInput.value;
     paintToDo(currentValue);
     toDoInput.value = "";
+    delAllBtn.style.display = "inline-block";
 }
 
 function loadTODos() {
     const loadedToDos = localStorage.getItem(TODOS_LS);
-    const delAllBtn = document.createElement("button");
-    delAllBtn.innerText = "모두 지우기";
+    // const delAllBtn = document.createElement("button");
+    delAllBtn.setAttribute("class", "delAllBtn");
+    delAllBtn.innerText = "DELETE ALL!";
     delAllBtn.addEventListener("click", deleteAllToDo);
     toDoList.after(delAllBtn);
-    if (loadedToDos !== null) {
 
+    if (loadedToDos !== null) {
         // console.log(loadedToDos);
         const parsedToDos = JSON.parse(loadedToDos);
         // console.log(parsedToDos);
@@ -92,6 +91,11 @@ function loadTODos() {
             // console.log(toDo.text);
             paintToDo(toDo.text);
         });
+        if (loadedToDos === "[]") {
+            delAllBtn.style.display = "none";
+        } else {
+            delAllBtn.style.display = "inline-block";
+        }
     }
 }
 
