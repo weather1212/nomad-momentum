@@ -22,6 +22,7 @@ function deleteAllToDo(event) {
     toDos = [];
     saveToDos();
     console.log("deleteAllToDo");
+    location.reload();
 }
 
 function deleteToDo(event) {
@@ -79,9 +80,10 @@ function loadTODos() {
     const loadedToDos = localStorage.getItem(TODOS_LS);
     // const delAllBtn = document.createElement("button");
     delAllBtn.setAttribute("class", "delAllBtn");
-    delAllBtn.innerText = "DELETE ALL!";
+    delAllBtn.innerText = "Delete All!";
     delAllBtn.addEventListener("click", deleteAllToDo);
     toDoList.after(delAllBtn);
+    delAllBtn.style.float = "right";
     delAllBtn.style.display = "none";
 
     if (loadedToDos !== null) {

@@ -10,7 +10,7 @@ body {
 .content {
     /* border: 2px solid black; */
     text-align: center;
-    margin: 10%;
+    margin: 10% 30%;
 }
 h1 {
     cursor: pointer;
@@ -19,8 +19,8 @@ h1 {
 ul {
     list-style: none;
     text-align: left;
-    margin-left: 35%;
-    margin-right: 35%;
+    margin-left: 22%;
+    margin-right: 22%;
 }
 .nameFrom, .greetings{
     display: none; 
